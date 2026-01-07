@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CAPO MODE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.categories {
+  text-align: center;
+  margin-bottom: 50px;
+  opacity: 0.8;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product {
+  border: 1px solid white;
+  padding: 25px;
+  text-align: center;
+}
+
+.product h3 {
+  margin: 15px 0 5px;
+}
+
+.product p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 12px 20px;
+  background: black;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+.cart {
+  border-top: 1px solid white;
+  margin-top: 60px;
+  padding-top: 30px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Born to Lead. Built to Dominate.</h1>
+  <p>Capo Mode is a mindset · Capo Mode es una mentalidad</p>
+</header>
+
+<section>
+  <h2>Shop</h2>
+  <div class="categories">
+    Apparel · Sneakers · Accessories
+  </div>
+
+  <div class="products">
+
+    <!-- PRODUCTO 1 -->
+    <div class="product">
+      <h3>Capo Signature Hoodie</h3>
+      <p>$89 USD</p>
+
+      <button onclick="buyNow()">Buy Now</button>
+      <button onclick="addToCart('Capo Signature Hoodie',89)">Add to Cart</button>
+    </div>
+
+    <!-- PRODUCTO 2 -->
+    <div class="product">
+      <h3>Dominion Sneakers</h3>
+      <p>$149 USD</p>
+
+      <button onclick="buyNow()">Buy Now</button>
+      <button onclick="addToCart('Dominion Sneakers',149)">Add to Cart</button>
+    </div>
+
+    <!-- PRODUCTO 3 -->
+    <div class="product">
+      <h3>Capo Chrono Watch</h3>
+      <p>$199 USD</p>
+
+      <button onclick="buyNow()">Buy Now</button>
+      <button onclick="addToCart('Capo Chrono Watch',199)">Add to Cart</button>
+    </div>
+
+    <!-- PRODUCTO 4 -->
+    <div class="product">
+      <h3>Street Power Bracelet</h3>
+      <p>$49 USD</p>
+
+      <button onclick="buyNow()">Buy Now</button>
+      <button onclick="addToCart('Street Power Bracelet',49)">Add to Cart</button>
+    </div>
+
+  </div>
+
+  <!-- CARRITO -->
+  <div class="cart">
+    <h2>Cart</h2>
+    <div id="cartItems"></div>
+    <p id="cartTotal"></p>
+  </div>
+
+</section>
+
+<footer>
+  © CAPO MODE · Street Luxury Lifestyle
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(product, price) {
+  cart.push({product, price});
+  renderCart();
+}
+
+function renderCart() {
+  let items = document.getElementById("cartItems");
+  let total = document.getElementById("cartTotal");
+
+  items.innerHTML = "";
+  let sum = 0;
+
+  cart.forEach(item => {
+    items.innerHTML += "<p>" + item.product + " - $" + item.price + "</p>";
+    sum += item.price;
+  });
+
+  total.innerHTML = "Total: $" + sum;
+}
+
+function buyNow() {
+  window.location.href =
+  "https://www.sandbox.paypal.com/checkoutnow?return=https://fararrmar.github.io/capomode/thankyou.html&cancel=https://fararrmar.github.io/capomode/";
+}
+</script>
+
+</body>
+</html>
